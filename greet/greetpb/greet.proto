@@ -8,19 +8,33 @@ message Greeting {
     string last_name = 2;
 }
 
+// unary
 message GreetRequest {
     Greeting greeting = 1;
 }
 
+// unary
 message GreetResponse {
     string result = 1;
 }
 
+// server stream
 message GreetManyTimesRequest {
     Greeting greeting = 1;
 }
 
+// server stream
 message GreetManyTimesResponse {
+    string result = 1;
+}
+
+// client streaming
+message LongGreetRequest {
+    Greeting greeting = 1;
+}
+
+// client streaming
+message LongGreetResponse {
     string result = 1;
 }
 
@@ -32,5 +46,9 @@ service GreetService {
     // server stream
     rpc GreetManyTimes (GreetManyTimesRequest) returns (stream GreetManyTimesResponse) {
     };
+    // client streaming
+    rpc LongGreet (stream LongGreetRequest) returns (LongGreetResponse) {
+
+    }
 
 }
