@@ -41,7 +41,7 @@ func (*server) GreetManyTimes(req *greetpb.GreetManyTimesRequest, steam greetpb.
 
 func (*server) LongGreet(stream greetpb.GreetService_LongGreetServer) error {
 	fmt.Print("LongGreet function was invoked with streaming request")
-	result := "hello "
+	result := ""
 
 	for {
 		req, err := stream.Recv()
@@ -55,7 +55,7 @@ func (*server) LongGreet(stream greetpb.GreetService_LongGreetServer) error {
 			log.Fatalf("error while reading the client stream : %v", err)
 		}
 		firstName := req.GetGreeting().GetFirstName()
-		result += firstName + "! "
+		result += "hello " + firstName + "! \n"
 	}
 }
 
